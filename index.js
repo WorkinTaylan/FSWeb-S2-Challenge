@@ -62,8 +62,9 @@ var cumleler = [
 		function foo(degisken=false){
 		return degisken;
 		}
-		Yukarıdaki fonksiyonu foo("deneme") olarak çağırabiliriz, bu fonksiyon "deneme" stringini döndürecektir. Aynı fonksiyonu foo(); şeklinde de çağırabiliriz. Bu durumda parametre olarak bir şey göndermediğimiz için fonksiyon içindeki degisken değişkenine false değeri atanacaktır. Bu durumda foo(); fonksiyonunu çalıştırdığımız false döndürür.
-		)
+		Yukarıdaki fonksiyonu foo("deneme") olarak çağırabiliriz, bu fonksiyon "deneme" stringini döndürecektir. Aynı fonksiyonu foo(); şeklinde de çağırabiliriz. 
+		Bu durumda parametre olarak bir şey göndermediğimiz için fonksiyon içindeki degisken değişkenine false değeri atanacaktır.
+		 Bu durumda foo(); fonksiyonunu çalıştırdığımız false döndürür.)
 		3. Alınan 5 string uc uca eklenerek bir stringe dönüştürülecektir.
 		4. Fonksiyon, oluşturulan stringi döndürecektir. 
 	*/
@@ -75,18 +76,19 @@ function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
+console.log(cumleKur("Hello World!"))
 
 
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
-
+console.log(cumleKur("Hello"," World!",))
 
 
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
-var bircumle;
+var bircumle= cumleKur("Ben"," iyi"," bir"," yazılımcı"," olacağım!")
 
-/* kodlar buraya */
+console.log(bircumle)
 
 
 
@@ -104,11 +106,18 @@ var bircumle;
 	*/
 	
 
-function cumlelereDonustur(/* kodlar buraya */ ){
+function cumlelereDonustur(first,second=","){
 	/* kodlar buraya */
-}
+	let yeniCumle=first.map(yeniCumleOlustur);
+	function yeniCumleOlustur(item){
+		return item.join(second);
+	}
+	return yeniCumle;
+ }
 
 
+
+console.log(cumlelereDonustur(cumleler," "))
 
 /* GÖREV 2:
 		paragrafOlustur fonksiyonuna aşağıdakileri uygulayın.
@@ -120,17 +129,21 @@ function cumlelereDonustur(/* kodlar buraya */ ){
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(/* kodlar buraya */ ){
+function paragrafOlustur(first,cb_cumleKur,cb_cumlelereDonustur ){
 	/* kodlar buraya */ 
+	let newArr= cb_cumlelereDonustur(cumleler," ");
+	let result=cb_cumleKur(newArr[1],newArr[3],newArr[5],newArr[7],newArr[9]);
+	return result;
 }
-
+console.log(paragrafOlustur(cumleler,cumleKur,cumlelereDonustur))
 
 /* 	GÖREV 3:
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
 //3a çözümü
-/* kodlar buraya */
+meyveler.pop();
+meyveler.shift();
 
 
 
@@ -140,7 +153,8 @@ function paragrafOlustur(/* kodlar buraya */ ){
 /* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı oldu. Tavşanı dizinin ilk elemanına 🐇, Kirpiyi dizinin son elemanına ekleyin 🦔 
 */
 //3b çözümü
-/* kodlar buraya */
+sebzeler.push("🦔");
+sebzeler.unshift("🐇");
 
 
 
@@ -154,14 +168,19 @@ function paragrafOlustur(/* kodlar buraya */ ){
 	//3c çözümü
 /* kodlar buraya */
 
-var manav;
+var manav=meyveler.concat(sebzeler)
 
+console.log(manav)
 
 
 
 
 /* 	GÖREV 4:
-		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. Bunun için emojiler adında bir nesne tanımlamışlar. Kullanıcının gönderdiği mesaj stringi içinde emojiler nesnesinin anahtarı(index) bulunuyorsa, bu işareti otomatik olarak anahtara ait değerde tanımlanmış emoji ile değiştirecek bir fonksiyon geliştirmek istiyorlar. ÖRNEK: Mesaj içinde ":)" sembolü bulunursa mesajı alan kişi bu sembolü "🙂" olarak görecek. Burdan yola çıkarak emojileriDonustur fonksiyonuna aşağıdakileri uygulayın.
+		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. Bunun için emojiler adında bir nesne tanımlamışlar. 
+		Kullanıcının gönderdiği mesaj stringi içinde emojiler nesnesinin anahtarı(index) bulunuyorsa, bu işareti otomatik olarak anahtara 
+		ait değerde tanımlanmış emoji ile değiştirecek bir fonksiyon geliştirmek istiyorlar. 
+		ÖRNEK: Mesaj içinde ":)" sembolü bulunursa mesajı alan kişi bu sembolü "🙂" olarak görecek. Burdan yola çıkarak emojileriDonustur 
+		fonksiyonuna aşağıdakileri uygulayın.
 			1. Atılan mesaj stringi fonksiyonun birinci parametresi olarak alınacak
 			2. emojiler nesnesi fonksiyonun ikinci parametresi olarak alınacak
 			3. mesaj stringi emoji nesnesinde tanımlı olan tüm sembolleri istenilen değere dönüştürecek (.replaceAll metodu kullanılacak)
@@ -170,11 +189,15 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */){
-/* kodlar buraya */
-
+function emojileriDonustur(mesaj,emo){
+let a=Object.keys(emo);
+for(let i=0; i<a.length; i++){
+	mesaj= mesaj.replaceAll(a[i].toUpperCase(), emo[a[i]]);
+	mesaj= mesaj.replaceAll(a[i].toLowerCase(), emo[a[i]]);
 }
-
+return mesaj;
+}
+console.log(emojileriDonustur('Beni güldürdün :D',emojiler))
 
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
